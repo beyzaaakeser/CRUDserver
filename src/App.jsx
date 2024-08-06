@@ -8,15 +8,14 @@ import List from './component/List';
 
 function App() {
   const [data, setData] = useState(null);
-  console.log(data);
-  const [formData, setFormData] = useState(null);
+
 
   const api = 'http://localhost:3000';
 
   useEffect(() => {
     axios
       .get(`${api}/todos`)
-      .then((res) => setData(res))
+      .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -27,15 +26,15 @@ function App() {
         <span className="text-warning text-uppercase">Crud</span> Server
       </h2>
 
-      <Form setFormData={setFormData} />
+      <Form setData={setData} data={data} />
 
       {!data ? (
         <Loading />
       ) : (
         <table className="container table table-striped mt-5 table-hover ">
           <tbody>
-            {data.data.map((item) => (
-              <List key={item.id} item={item} />
+            {data.map((item,index) => (
+              <List key={index} item={item} />
             ))}
           </tbody>
         </table>

@@ -1,34 +1,10 @@
 {
   "todos": [
     {
-      "id": 1,
-      "status": "daily",
-      "title": "Grocery Shopping",
-      "date": "08-06-2024 10:00 AM"
-    },
-    {
-      "id": 2,
-      "status": "important",
-      "title": "Doctor Appointment",
-      "date": "09-06-2024 10:00 AM"
-    },
-    {
-      "id": 3,
-      "status": "job",
-      "title": "Finish Project Report",
-      "date": "07-06-2024 10:00 AM"
-    },
-    {
-      "id": 4,
-      "status": "daily",
+      "id": "d668",
       "title": "Call Mom",
-      "date": "06-06-2024 10:00 AM"
-    },
-    {
-      "id": 6,
-      "status": "important",
-      "title": "Pay Bills",
-      "date": "05-06-2024 10:00 AM"
+      "status": "daily",
+      "date": "6:51:24 PM"
     }
   ]
 }
