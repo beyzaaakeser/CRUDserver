@@ -13,9 +13,10 @@ function App() {
   const api = 'http://localhost:3000';
 
   useEffect(() => {
+    const params = { _sort: "-date", _page: 1 };
     axios
-      .get(`${api}/todos`)
-      .then((res) => setData(res.data))
+      .get(`${api}/todos`,{params})
+      .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -26,7 +27,7 @@ function App() {
         <span className="text-warning text-uppercase">Crud</span> Server
       </h2>
 
-      <Form setData={setData} data={data} />
+      <Form setData={setData} />
 
       {!data ? (
         <Loading />
@@ -34,7 +35,7 @@ function App() {
         <table className="container table table-striped mt-5 table-hover ">
           <tbody>
             {data.map((item,index) => (
-              <List key={index} item={item} />
+              <List key={index} item={item} setData={setData} />
             ))}
           </tbody>
         </table>

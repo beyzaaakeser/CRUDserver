@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef } from 'react';
 
-const Form = ({ setData, data }) => {
+const Form = ({ setData }) => {
   const inputRef = useRef();
   const optionRef = useRef();
   const handleSubmit = (e) => {
@@ -17,8 +17,10 @@ const Form = ({ setData, data }) => {
 
     axios
       .post(`${api}/todos`, newTodo)
-      .then(() => setData([...data, newTodo]))
+      .then((res) => setData((todos) => [res.data, ...todos]))
       .catch((err) => console.log(err));
+
+      e.target.reset();
   };
 
   return (

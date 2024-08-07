@@ -4,7 +4,9 @@ import { IoCalendarNumberSharp } from 'react-icons/io5';
 import { CgDanger } from 'react-icons/cg';
 import { FaBriefcase } from 'react-icons/fa';
 import '../index.css';
-const List = ({ item }) => {
+import axios from 'axios';
+
+const List = ({ item, setData }) => {
   let icon = null;
 
   switch (true) {
@@ -20,8 +22,15 @@ const List = ({ item }) => {
       break;
   }
 
-  const deleteItem = (e) => {
-    console.log(e);
+  const handleDelete = () => {
+    // API'a todoyu silmek için istek at
+    const api = 'http://localhost:3000';
+    axios
+      .delete(`${api}/todos/${item.id}`)
+      // başarılı olursa > silinen todo'yu state den kaldır
+      .then(() =>
+        setData((todos) => todos.filter((todo) => todo.id !== item.id))
+      ).catch((err)=> console.log(err))
   };
 
   return (
@@ -31,7 +40,7 @@ const List = ({ item }) => {
       <td className="d-flex justify-content-end gap-1">
         <button className="btn btn-outline-dark btn-sm btnWidth">Edit</button>
         <button
-          onClick={deleteItem}
+          onClick={handleDelete}
           className="btn btn-outline-danger btn-sm btnWidth "
         >
           Delete
