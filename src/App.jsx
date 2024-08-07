@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-dark text-light min-vh-100 w-100 py-3">
+    <div className="bg-dark text-light min-vh-100  py-3 app-container">
       <h2 className="text-center fs-1">
         {' '}
         <span className="text-warning text-uppercase">Crud</span> Server

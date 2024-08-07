@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef } from 'react';
-
+import Swal from 'sweetalert2';
 const Form = ({ setData }) => {
   const inputRef = useRef();
   const optionRef = useRef();
@@ -8,6 +8,15 @@ const Form = ({ setData }) => {
     e.preventDefault();
     let inputVal = inputRef.current.value;
     let optionVal = optionRef.current.value;
+
+    if (!inputVal.trim()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please enter content!',
+      });
+      return;
+    }
     const newTodo = {
       title: inputVal,
       status: optionVal,
@@ -20,7 +29,7 @@ const Form = ({ setData }) => {
       .then((res) => setData((todos) => [res.data, ...todos]))
       .catch((err) => console.log(err));
 
-      e.target.reset();
+    e.target.reset();
   };
 
   return (

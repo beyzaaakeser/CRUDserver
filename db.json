@@ -1,3 +1,16 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "86a7",
+      "title": "beyza",
+      "status": "job",
+      "date": "6:32:19 PM"
+    },
+    {
+      "id": "3eeb",
+      "title": "keserr",
+      "status": "important",
+      "date": "6:32:58 PM"
+    }
+  ]
 }
