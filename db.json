@@ -1,3 +1,28 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "9b28",
+      "title": "Full Stack Developer",
+      "status": "job",
+      "date": "8/8/2024, 7:37:02 PM"
+    },
+    {
+      "id": "e408",
+      "title": "React Developer",
+      "status": "job",
+      "date": "8/8/2024, 7:37:14 PM"
+    },
+    {
+      "id": "b55b",
+      "title": "Do project with vite",
+      "status": "daily",
+      "date": "8/8/2024, 7:37:31 PM"
+    },
+    {
+      "id": "0f71",
+      "title": "Learn Next.js",
+      "status": "important",
+      "date": "8/8/2024, 7:37:43 PM"
+    }
+  ]
 }
