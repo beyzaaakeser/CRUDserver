@@ -38,12 +38,8 @@ const Form = ({ setData }) => {
 
       <select
         ref={optionRef}
-        defaultValue="selected"
-        className="form-control fw-semibold  w-25"
+        className="form-control fw-semibold  w-25 selects"
       >
-        <option value="selected" className="text-center" disabled>
-          Select
-        </option>
         <option value="job">Job</option>
         <option value="important">Important</option>
         <option value="daily">Daily</option>

@@ -1,4 +1,14 @@
-const Modal = ({ close, handleUpdate }) => {
+import { useEffect, useState } from 'react';
+import '../index.css';
+
+const Modal = ({ close, handleUpdate, title, status }) => {
+  const [inputTitle, setInputTitle] = useState('');
+  const [inputStatus, setInputStatus] = useState('');
+
+  useEffect(() => {
+    setInputTitle(title);
+    setInputStatus(status);
+  }, [title, status]);
   return (
     <div className="modal d-block bg-black bg-opacity-75">
       <div className="modal-dialog modal-dialog-centered">
@@ -15,19 +25,19 @@ const Modal = ({ close, handleUpdate }) => {
               <div className="d-flex gap-2">
                 <input
                   name="title"
-                  className="form-control w-75"
+                  className="form-control w-100"
                   type="text"
+                  value={inputTitle} // Input değeri state'den geliyor
+                  onChange={(e) => setInputTitle(e.target.value)}
                   placeholder="Enter todo title"
                 />
 
                 <select
                   name="status"
-                  defaultValue="selected"
-                  className="form-control fw-semibold w-25"
+                  className="form-control fw-semibold w-50  selects"
+                  value={inputStatus} // Select değeri state'den geliyor
+                  onChange={(e) => setInputStatus(e.target.value)}
                 >
-                  <option value="selected" className="text-center" disabled>
-                    Select
-                  </option>
                   <option value="job">Job</option>
                   <option value="important">Important</option>
                   <option value="daily">Daily</option>
@@ -35,7 +45,11 @@ const Modal = ({ close, handleUpdate }) => {
               </div>
 
               <div className="modal-footer p-0 mt-3 d-flex justify-content-end gap-2">
-                <button onClick={close} type="button" className="btn btn-secondary">
+                <button
+                  onClick={close}
+                  type="button"
+                  className="btn btn-secondary"
+                >
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary">

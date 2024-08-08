@@ -59,8 +59,8 @@ button:focus-visible {
   display: none;
 }
 
-.list-table{
-  border-collapse: collapse !important; 
+.list-table {
+  border-collapse: collapse !important;
   border: none !important;
 }
 
@@ -70,7 +70,6 @@ button:focus-visible {
 .list-table tr td {
   padding: 10px;
   vertical-align: middle;
-
 }
 .list-table tr td:first-child {
   width: 60px !important;
@@ -83,6 +82,7 @@ button:focus-visible {
 .list-table tr td:nth-child(2) {
   font-size: 1.3rem !important;
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 @media (prefers-color-scheme: light) {
@@ -119,6 +119,16 @@ button:focus-visible {
   .list-table tr td:last-child {
     width: 110px !important;
   }
+
+  .selects {
+    padding: 5px;
+  }
+
+  .selects option {
+    font-size: 12px;
+  }
+
+ 
 }
 
 @media (min-width: 551px) {

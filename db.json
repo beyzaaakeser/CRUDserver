@@ -1,34 +1,10 @@
 {
   "todos": [
     {
-      "id": "07e7",
-      "title": "keser",
-      "status": "important",
-      "date": "2:44:45 PM"
-    },
-    {
-      "id": "931c",
-      "title": "beyzaa",
-      "status": "important",
-      "date": "5:02:43 PM"
-    },
-    {
-      "id": "a0fe",
-      "title": "aaaa",
+      "id": "4cd5",
+      "title": "Beyza Keser",
       "status": "daily",
-      "date": "5:04:20 PM"
-    },
-    {
-      "id": "5dd0",
-      "title": "vvvvv",
-      "status": "daily",
-      "date": "5:04:24 PM"
-    },
-    {
-      "id": "6c4a",
-      "title": "ffff",
-      "status": "job",
-      "date": "5:04:27 PM"
+      "date": "6:55:16 PM"
     }
   ]
 }

@@ -11,6 +11,8 @@ import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaRegTrashCan } from 'react-icons/fa6';
 const List = ({ item, setData, data }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentTitle, setCurrentTitle] = useState('');
+  const [currentStatus, setCurrentStatus] = useState('');
 
   let icon = null;
 
@@ -61,12 +63,21 @@ const List = ({ item, setData, data }) => {
     });
   };
 
+  const handleEdit = () => {
+    setCurrentTitle(item.title);
+    setCurrentStatus(item.status);
+    setIsOpen(true);
+  };
+
   const handleUpdate = (e) => {
     e.preventDefault();
     const title = e.target.elements.title.value.trim();
-    console.log(title);
     const status = e.target.elements.status.value;
-    console.log(status);
+
+    if (title === item.title && status === item.status) {
+      Swal.fire("You haven't made any changes !");
+      return;
+    }
 
     if (!title) {
       Swal.fire('Please enter a title!');
@@ -74,20 +85,26 @@ const List = ({ item, setData, data }) => {
     }
 
     axios
-    .patch(`http://localhost:3000/todos/${item.id}`, { title, status })
-    .then(() => {
-      // * 1.Mevcut todonun title ve status değerlerini güncelle
-      const updated = { ...item, title, status };
-      // * 2.Dizideki eski todonun yerine güncel halini koy
-      const newTodos = data.map((item) =>
-        item.id === updated.id ? updated : item
-      );
-      // * 3.State'i güncelle
-      setData(newTodos);
-      // * 4.Düzenleme modundan çık
-      setIsOpen(false); 
-    });
-  
+      .patch(`http://localhost:3000/todos/${item.id}`, { title, status })
+      .then(() => {
+        // * 1.Mevcut todonun title ve status değerlerini güncelle
+        const updated = { ...item, title, status };
+        // * 2.Dizideki eski todonun yerine güncel halini koy
+        const newTodos = data.map((item) =>
+          item.id === updated.id ? updated : item
+        );
+        // * 3.State'i güncelle
+        setData(newTodos);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Todo item has been updated',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // * 4.Düzenleme modundan çık
+        setIsOpen(false);
+      });
   };
 
   return (
@@ -96,18 +113,26 @@ const List = ({ item, setData, data }) => {
       <td className=""> {item.title}</td>
       <td className=" text-nowrap text-end">
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={handleEdit}
           className="btn btn-outline-dark btn-sm btnWidth"
         >
           <FaRegPenToSquare className="edit-icon" />
           <span> Edit</span>
         </button>
-        <button className="btn btn-outline-danger btn-sm btnWidth " onClick={handleDelete}>
+        <button
+          className="btn btn-outline-danger btn-sm btnWidth "
+          onClick={handleDelete}
+        >
           <FaRegTrashCan className="delete-icon" />
           <span>Delete</span>
         </button>
         {isOpen && (
-          <Modal close={() => setIsOpen(false)} handleUpdate={handleUpdate} />
+          <Modal
+            close={() => setIsOpen(false)}
+            handleUpdate={handleUpdate}
+            title={currentTitle}
+            status={currentStatus}
+          />
         )}
       </td>
     </tr>
