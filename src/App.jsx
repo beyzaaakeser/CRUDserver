@@ -32,10 +32,10 @@ function App() {
       {!data ? (
         <Loading />
       ) : (
-        <table className="container table table-striped mt-5 table-hover table-bordered list-table ">
+        <table className="container table table-striped mt-5 table-hover  list-table ">
           <tbody>
             {data.map((item,index) => (
-              <List key={index} item={item} setData={setData} />
+              <List key={index} item={item} setData={setData} data={data} />
             ))}
           </tbody>
         </table>

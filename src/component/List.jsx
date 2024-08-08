@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import Modal from './Modal';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaRegTrashCan } from 'react-icons/fa6';
-const List = ({ item, setData }) => {
+const List = ({ item, setData, data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   let icon = null;
@@ -60,6 +60,36 @@ const List = ({ item, setData }) => {
       }
     });
   };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const title = e.target.elements.title.value.trim();
+    console.log(title);
+    const status = e.target.elements.status.value;
+    console.log(status);
+
+    if (!title) {
+      Swal.fire('Please enter a title!');
+      return;
+    }
+
+    axios
+    .patch(`http://localhost:3000/todos/${item.id}`, { title, status })
+    .then(() => {
+      // * 1.Mevcut todonun title ve status değerlerini güncelle
+      const updated = { ...item, title, status };
+      // * 2.Dizideki eski todonun yerine güncel halini koy
+      const newTodos = data.map((item) =>
+        item.id === updated.id ? updated : item
+      );
+      // * 3.State'i güncelle
+      setData(newTodos);
+      // * 4.Düzenleme modundan çık
+      setIsOpen(false); 
+    });
+  
+  };
+
   return (
     <tr className="">
       <td className="text-center">{icon}</td>
@@ -72,13 +102,13 @@ const List = ({ item, setData }) => {
           <FaRegPenToSquare className="edit-icon" />
           <span> Edit</span>
         </button>
-        <button
-          onClick={handleDelete}
-          className="btn btn-outline-danger btn-sm btnWidth "
-        >
+        <button className="btn btn-outline-danger btn-sm btnWidth " onClick={handleDelete}>
           <FaRegTrashCan className="delete-icon" />
           <span>Delete</span>
         </button>
+        {isOpen && (
+          <Modal close={() => setIsOpen(false)} handleUpdate={handleUpdate} />
+        )}
       </td>
     </tr>
   );
