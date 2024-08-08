@@ -20,7 +20,7 @@ const Form = ({ setData }) => {
     const newTodo = {
       title: inputVal,
       status: optionVal,
-      date: new Date().toLocaleTimeString(),
+      date: new Date().toLocaleString('en-us'),
     };
     const api = 'http://localhost:3000';
 
