@@ -32,10 +32,6 @@ h1 {
   line-height: 1.1;
 }
 
-.btnWidth{
-  width: 70px !important;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -46,7 +42,6 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  
 }
 button:hover {
   border-color: #646cff;
@@ -54,6 +49,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.btnWidth {
+  width: 70px !important;
+}
+
+.list-table tr td button:first-child {
+  margin-right: 10px;
+}
+
+.d-none {
+  display: none;
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,5 +73,49 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 550px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .btnWidth {
+    width: 50px !important;
+  }
+
+  .btnWidth span {
+    display: none;
+  }
+  .delete-icon,
+  .edit-icon {
+    padding: 0;
+    font-size: 17px;
+  }
+
+  .list-table tr td:last-child {
+    width: 110px !important;
+
+  }
+}
+
+@media (min-width: 551px) {
+  .btnWidth span {
+    display: block;
+  }
+
+  .delete-icon,
+  .edit-icon {
+    display: none;
+  }
+
+  .list-table tr td:nth-child(1) {
+    width: 70px !important;
+  }
+
+  .list-table tr td:last-child {
+    width: 160px !important;
+
   }
 }

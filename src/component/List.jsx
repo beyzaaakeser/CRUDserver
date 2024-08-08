@@ -7,6 +7,8 @@ import '../index.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Modal from './Modal';
+import { FaRegPenToSquare } from 'react-icons/fa6';
+import { FaRegTrashCan } from 'react-icons/fa6';
 const List = ({ item, setData }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,23 +61,24 @@ const List = ({ item, setData }) => {
     });
   };
   return (
-    <tr>
+    <tr className="">
       <td className="text-center">{icon}</td>
-      <td> {item.title}</td>
-      <td className="d-flex justify-content-end gap-1">
+      <td className=""> {item.title}</td>
+      <td className=" text-nowrap text-end">
         <button
           onClick={() => setIsOpen(true)}
           className="btn btn-outline-dark btn-sm btnWidth"
         >
-          Edit
+          <FaRegPenToSquare className="edit-icon" />
+          <span> Edit</span>
         </button>
         <button
           onClick={handleDelete}
           className="btn btn-outline-danger btn-sm btnWidth "
         >
-          Delete
+          <FaRegTrashCan className="delete-icon" />
+          <span>Delete</span>
         </button>
-        {isOpen && <Modal close={() => setIsOpen(false)} />}
       </td>
     </tr>
   );
